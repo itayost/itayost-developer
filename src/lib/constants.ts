@@ -1,12 +1,12 @@
 export const SITE_CONFIG = {
-  name: 'Client Name',
-  description: 'Client Description',
+  name: 'ItayOst',
+  description: 'ItayOst - Your go-to solution for web development and design.',
   url: process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000',
   ogImage: '/og-image.jpg',
   keywords: ['keyword1', 'keyword2', 'keyword3'],
   twitterHandle: '@yourhandle',
-  phone: '+972-54-1234567',
-  email: 'info@example.com',
+  phone: '+972-54-4994417',
+  email: 'itayost1@gmail.com',
   address: {
     '@type': 'PostalAddress',
     streetAddress: '123 Main St',
