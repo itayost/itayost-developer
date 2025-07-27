@@ -1,78 +1,120 @@
 'use client';
 
-import Link from 'next/link';
-import { useState } from 'react';
-import { NAV_ITEMS } from '@/lib/constants';
 import Button from '@/components/ui/Button';
+import { CONTACT_CTAS, NAV_ITEMS, SITE_CONFIG } from '@/lib/constants';
+import Link from 'next/link';
+import { useEffect, useState } from 'react';
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 10);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-white">
+    <header 
+      className={`sticky top-0 z-50 w-full transition-all duration-300 ${
+        isScrolled 
+          ? 'bg-white/95 backdrop-blur-sm shadow-soft' 
+          : 'bg-white'
+      }`}
+    >
       <div className="container">
-        <div className="flex h-16 items-center justify-between">
-          {/* Logo */}
-          <Link href="/" className="flex items-center space-x-2">
-            <span className="text-xl font-bold">לוגו</span>
+        <div className="flex h-20 items-center justify-between">
+          {/* Logo - Clean and modern */}
+          <Link 
+            href="/" 
+            className="flex items-center transition-opacity hover:opacity-80"
+          >
+            <span className="text-2xl font-bold text-text-primary">
+              ItayOst
+            </span>
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex md:items-center md:gap-6">
+          <nav className="hidden md:flex md:items-center md:gap-8">
             {NAV_ITEMS.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
-                className="text-sm font-medium transition-colors hover:text-primary-600"
+                className="text-sm font-medium text-text-secondary hover:text-text-primary transition-colors link-underline"
               >
                 {item.label}
               </Link>
             ))}
           </nav>
 
-          {/* CTA Button */}
-          <div className="hidden md:block">
-            <Button>צור קשר</Button>
+          {/* Desktop CTAs */}
+          <div className="hidden md:flex md:items-center md:gap-4">
+            <a
+              href={CONTACT_CTAS.PHONE.href}
+              className="text-text-secondary hover:text-text-primary transition-colors"
+            >
+              <span className="text-lg" dir="ltr">{SITE_CONFIG.phone}</span>
+            </a>
+            <Link href="/contact">
+              <Button size="sm" className="btn-primary">
+                התחל פרויקט
+              </Button>
+            </Link>
           </div>
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden"
+            className="relative md:hidden p-2"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
+            aria-label="תפריט"
           >
-            <svg
-              className="h-6 w-6"
-              fill="none"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              {isMenuOpen ? (
-                <path d="M6 18L18 6M6 6l12 12" />
-              ) : (
-                <path d="M4 6h16M4 12h16M4 18h16" />
-              )}
-            </svg>
+            <div className="w-6 h-6 flex flex-col justify-center items-center">
+              <span className={`bg-text-primary h-[2px] w-6 rounded-full transition-all duration-300 ${
+                isMenuOpen ? 'rotate-45 translate-y-[3px]' : '-translate-y-[6px]'
+              }`} />
+              <span className={`bg-text-primary h-[2px] w-6 rounded-full transition-all duration-300 ${
+                isMenuOpen ? 'opacity-0' : 'opacity-100'
+              }`} />
+              <span className={`bg-text-primary h-[2px] w-6 rounded-full transition-all duration-300 ${
+                isMenuOpen ? '-rotate-45 -translate-y-[3px]' : 'translate-y-[6px]'
+              }`} />
+            </div>
           </button>
         </div>
 
-        {/* Mobile Menu */}
+        {/* Mobile Menu - Clean slide */}
         {isMenuOpen && (
-          <div className="border-t md:hidden">
-            <nav className="flex flex-col space-y-4 py-4">
+          <div className="md:hidden border-t border-neutral-100 py-6">
+            <nav className="flex flex-col space-y-4">
               {NAV_ITEMS.map((item) => (
                 <Link
                   key={item.href}
                   href={item.href}
-                  className="text-sm font-medium transition-colors hover:text-primary-600"
+                  className="text-base font-medium text-text-secondary hover:text-text-primary transition-colors px-4"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   {item.label}
                 </Link>
               ))}
-              <Button className="w-full">צור קשר</Button>
+              <div className="pt-4 space-y-3 border-t border-neutral-100">
+                <a
+                  href={CONTACT_CTAS.PHONE.href}
+                  className="flex items-center gap-3 text-text-secondary px-4"
+                >
+                  <span>📞</span>
+                  <span dir="ltr">{SITE_CONFIG.phone}</span>
+                </a>
+                <div className="px-4">
+                  <Link href="/contact">
+                    <Button fullWidth className="btn-primary">
+                      התחל פרויקט
+                    </Button>
+                  </Link>
+                </div>
+              </div>
             </nav>
           </div>
         )}
