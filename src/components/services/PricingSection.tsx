@@ -1,67 +1,94 @@
+'use client';
+
 import Button from '@/components/ui/Button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card';
 import { pricingPlans } from '@/data/services';
 import Link from 'next/link';
+import { useState } from 'react';
 
 export default function PricingSection() {
+  const [hoveredPlan, setHoveredPlan] = useState<number | null>(null);
+  
   return (
     <section className="section">
       <div className="container">
-        <div className="text-center mb-12">
-          <h2 className="text-title font-bold tracking-micro mb-4">
-            חבילות ומחירים
+        <div className="text-center mb-16">
+          <div className="inline-block px-8 py-3 bg-neon-green text-black font-black border-4 border-black shadow-brutal-lg mb-6 -rotate-2">
+            💰 מחירים שקופים והוגנים
+          </div>
+          
+          <h2 className="text-display font-black mb-6">
+            <span className="block">בחרו את החבילה</span>
+            <span className="gradient-text-fire">שמתאימה לכם</span>
           </h2>
-          <p className="text-lg text-text-secondary">
-            פתרונות גמישים המותאמים לכל תקציב
-          </p>
         </div>
         
-        <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+        <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
           {pricingPlans.map((plan, index) => (
             <Card 
               key={index}
-              className={`relative ${
+              variant={plan.featured ? 'brutal' : 'glass'}
+              className={`relative transition-all duration-500 cursor-pointer ${
                 plan.featured 
-                  ? 'border-primary-500 shadow-soft-xl scale-105' 
-                  : 'border-neutral-200'
-              } hover-lift animate-fade-up`}
-              style={{ animationDelay: `${index * 100}ms` }}
+                  ? 'bg-gradient-to-br from-neon-yellow to-neon-green border-8 scale-110 z-10' 
+                  : hoveredPlan === index 
+                    ? 'scale-105' 
+                    : 'scale-100'
+              }`}
+              onMouseEnter={() => setHoveredPlan(index)}
+              onMouseLeave={() => setHoveredPlan(null)}
+              style={{ 
+                transform: plan.featured ? 'rotate(-2deg)' : `rotate(${index === 0 ? 2 : -1}deg)`
+              }}
             >
               {plan.featured && (
-                <div className="absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1 bg-primary-500 text-white text-sm font-medium rounded-full">
-                  מומלץ
+                <div className="absolute -top-6 left-1/2 -translate-x-1/2 px-6 py-2 bg-black text-neon-yellow font-black text-lg border-4 border-neon-yellow shadow-brutal rotate-12">
+                  🔥 הכי פופולרי
                 </div>
               )}
               
               <CardHeader className="text-center pb-8">
-                <CardTitle className="text-2xl mb-2">{plan.name}</CardTitle>
-                <p className="text-text-tertiary text-sm mb-4">{plan.description}</p>
-                <div className="flex items-baseline justify-center gap-1">
-                  <span className="text-sm text-text-tertiary">₪</span>
-                  <span className="text-4xl font-bold text-text-primary">{plan.price}</span>
-                  <span className="text-sm text-text-tertiary">/פרויקט</span>
+                <CardTitle className="text-3xl font-black mb-2">
+                  {plan.name}
+                </CardTitle>
+                <p className="text-text-secondary font-medium mb-6">
+                  {plan.description}
+                </p>
+                <div className="flex items-baseline justify-center gap-2">
+                  <span className="text-5xl font-black">
+                    ₪{plan.price}
+                  </span>
+                  <span className="text-text-tertiary">/פרויקט</span>
                 </div>
               </CardHeader>
               
               <CardContent>
-                <ul className="space-y-3 mb-8">
+                <ul className="space-y-4 mb-8">
                   {plan.features.map((feature, idx) => (
-                    <li key={idx} className="flex items-start gap-2 text-sm">
-                      <span className="text-green-500 mt-0.5">✓</span>
-                      <span className="text-text-secondary">{feature}</span>
+                    <li 
+                      key={idx} 
+                      className="flex items-start gap-3 text-sm font-medium"
+                      style={{
+                        opacity: hoveredPlan === index || plan.featured ? 1 : 0.8,
+                        transform: hoveredPlan === index || plan.featured ? 'translateX(5px)' : 'translateX(0)',
+                        transition: `all 0.3s ease ${idx * 50}ms`
+                      }}
+                    >
+                      <span className="text-neon-green text-xl font-black">✓</span>
+                      <span>{feature}</span>
                     </li>
                   ))}
                 </ul>
                 
                 <Link href="/contact" className="block">
                   <Button 
-                    className={`w-full ${
-                      plan.featured 
-                        ? 'btn-primary' 
-                        : 'bg-neutral-100 text-text-primary hover:bg-neutral-200'
-                    }`}
+                    variant={plan.featured ? 'glow' : 'brutal'}
+                    size="lg"
+                    fullWidth
+                    pulse={plan.featured}
+                    className="font-black"
                   >
-                    בחר חבילה
+                    {plan.featured ? '🚀 בואו נתחיל!' : 'בחר חבילה'}
                   </Button>
                 </Link>
               </CardContent>
@@ -69,8 +96,11 @@ export default function PricingSection() {
           ))}
         </div>
         
-        <p className="text-center text-text-tertiary mt-8">
-          * המחירים הם הערכה בלבד. ניתן להתאים חבילות אישיות לפי דרישה.
+        <p className="text-center text-text-tertiary mt-12 text-lg font-medium">
+          לא מצאתם מה שחיפשתם? 
+          <Link href="/contact" className="text-neon-purple font-black mr-2 hover:underline">
+            בואו נבנה חבילה מותאמת אישית
+          </Link>
         </p>
       </div>
     </section>

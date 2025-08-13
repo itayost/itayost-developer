@@ -7,20 +7,20 @@ import ValuesSection from '@/components/about/ValuesSection';
 import { generateSEO } from '@/components/common/SEO';
 
 export const metadata = generateSEO({
-  title: 'אודות ItayOst | סיפור של תשוקה לטכנולוגיה ופתרונות דיגיטליים',
-  description: 'הכירו את ItayOst - מפתח פתרונות דיגיטליים עם ניסיון של 5 שנים בפיתוח אתרים, אפליקציות ומערכות לעסקים.',
-  keywords: ['אודות', 'ItayOst', 'פיתוח אתרים', 'סיפור אישי', 'ניסיון'],
+  title: 'אודות ItayOst | הסיפור מאחורי הקוד',
+  description: 'הכירו את איתי אוסט - מפתח עם תשוקה אמיתית לטכנולוגיה, 5+ שנות ניסיון ומעל 200 פרויקטים מוצלחים.',
+  keywords: ['אודות', 'איתי אוסט', 'ItayOst', 'פיתוח אתרים', 'סיפור אישי', 'ניסיון'],
 });
 
 export default function AboutPage() {
   return (
-    <>
+    <main className="overflow-x-hidden">
       <AboutHeroSection />
       <PersonalStorySection />
       <ValuesSection />
       <StatsSection />
       <SkillsSection />
       <AboutCTASection />
-    </>
+    </main>
   );
 }
