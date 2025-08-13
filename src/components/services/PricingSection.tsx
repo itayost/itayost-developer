@@ -13,7 +13,7 @@ export default function PricingSection() {
     <section className="section">
       <div className="container">
         <div className="text-center mb-16">
-          <div className="inline-block px-8 py-3 bg-neon-green text-black font-black border-4 border-black shadow-brutal-lg mb-6 -rotate-2">
+          <div className="inline-block px-8 py-3 bg-neon-green text-black font-black border-4 border-black shadow-brutal-lg mb-6">
             💰 מחירים שקופים והוגנים
           </div>
           
@@ -28,21 +28,18 @@ export default function PricingSection() {
             <Card 
               key={index}
               variant={plan.featured ? 'brutal' : 'glass'}
-              className={`relative transition-all duration-500 cursor-pointer ${
+              className={`relative transition-all duration-300 cursor-pointer ${
                 plan.featured 
-                  ? 'bg-gradient-to-br from-neon-yellow to-neon-green border-8 scale-110 z-10' 
+                  ? 'bg-gradient-to-br from-neon-yellow to-neon-green border-8 scale-105 z-10' 
                   : hoveredPlan === index 
-                    ? 'scale-105' 
+                    ? 'scale-[1.02]' 
                     : 'scale-100'
               }`}
               onMouseEnter={() => setHoveredPlan(index)}
               onMouseLeave={() => setHoveredPlan(null)}
-              style={{ 
-                transform: plan.featured ? 'rotate(-2deg)' : `rotate(${index === 0 ? 2 : -1}deg)`
-              }}
             >
               {plan.featured && (
-                <div className="absolute -top-6 left-1/2 -translate-x-1/2 px-6 py-2 bg-black text-neon-yellow font-black text-lg border-4 border-neon-yellow shadow-brutal rotate-12">
+                <div className="absolute -top-6 left-1/2 -translate-x-1/2 px-6 py-2 bg-black text-neon-yellow font-black text-lg border-4 border-neon-yellow shadow-brutal">
                   🔥 הכי פופולרי
                 </div>
               )}
@@ -67,11 +64,10 @@ export default function PricingSection() {
                   {plan.features.map((feature, idx) => (
                     <li 
                       key={idx} 
-                      className="flex items-start gap-3 text-sm font-medium"
+                      className="flex items-start gap-3 text-sm font-medium transition-all duration-200"
                       style={{
                         opacity: hoveredPlan === index || plan.featured ? 1 : 0.8,
-                        transform: hoveredPlan === index || plan.featured ? 'translateX(5px)' : 'translateX(0)',
-                        transition: `all 0.3s ease ${idx * 50}ms`
+                        transform: hoveredPlan === index || plan.featured ? 'translateX(3px)' : 'translateX(0)'
                       }}
                     >
                       <span className="text-neon-green text-xl font-black">✓</span>
@@ -85,7 +81,6 @@ export default function PricingSection() {
                     variant={plan.featured ? 'glow' : 'brutal'}
                     size="lg"
                     fullWidth
-                    pulse={plan.featured}
                     className="font-black"
                   >
                     {plan.featured ? '🚀 בואו נתחיל!' : 'בחר חבילה'}

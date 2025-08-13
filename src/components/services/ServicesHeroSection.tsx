@@ -11,42 +11,30 @@ export default function ServicesHeroSection() {
     setIsLoaded(true);
     const interval = setInterval(() => {
       setActiveService((prev) => (prev + 1) % services.length);
-    }, 2000);
+    }, 3000); // Slower rotation
     return () => clearInterval(interval);
   }, []);
   
   return (
     <section className="relative min-h-[70vh] flex items-center overflow-hidden bg-gradient-to-br from-neon-purple via-black to-neon-blue">
-      {/* Animated background mesh */}
-      <div className="absolute inset-0 bg-mesh-gradient opacity-20 animate-float-slow" />
-      
-      {/* Glitch lines */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-1/4 left-0 right-0 h-1 bg-neon-green animate-glitch" />
-        <div className="absolute top-2/4 left-0 right-0 h-1 bg-neon-pink animate-glitch" style={{ animationDelay: '0.5s' }} />
-        <div className="absolute top-3/4 left-0 right-0 h-1 bg-neon-yellow animate-glitch" style={{ animationDelay: '1s' }} />
-      </div>
-      
-      {/* Floating emojis */}
-      <div className="absolute top-10 right-10 text-8xl opacity-30 animate-float">💻</div>
-      <div className="absolute bottom-10 left-10 text-8xl opacity-30 animate-float-slow">📱</div>
-      <div className="absolute top-1/2 right-20 text-6xl opacity-30 animate-wiggle">⚡</div>
+      {/* Simple gradient background */}
+      <div className="absolute inset-0 bg-mesh-gradient opacity-10" />
       
       <div className="container relative z-10">
         <div className="max-w-5xl mx-auto text-center">
-          {/* Animated badge */}
+          {/* Simple badge without animation */}
           <div 
-            className={`inline-flex items-center gap-2 px-8 py-4 bg-neon-yellow text-black border-4 border-black shadow-brutal-lg font-black mb-8 transform transition-all duration-1000 ${
-              isLoaded ? 'translate-y-0 opacity-100 rotate-0' : '-translate-y-10 opacity-0 -rotate-6'
+            className={`inline-flex items-center gap-2 px-8 py-4 bg-neon-yellow text-black border-4 border-black shadow-brutal-lg font-black mb-8 transform transition-all duration-700 ${
+              isLoaded ? 'translate-y-0 opacity-100' : '-translate-y-10 opacity-0'
             }`}
           >
-            <span className="animate-pulse text-2xl">🚀</span>
+            <span className="text-2xl">🚀</span>
             פתרונות דיגיטליים ללא פשרות
           </div>
           
-          {/* Dynamic headline */}
+          {/* Clean headline without glitch */}
           <h1 
-            className={`text-display font-black mb-8 transition-all duration-1000 ${
+            className={`text-display font-black mb-8 transition-all duration-700 ${
               isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
             }`}
           >
@@ -54,7 +42,7 @@ export default function ServicesHeroSection() {
               אנחנו בונים
             </span>
             <span className="block text-7xl relative">
-              <span className="gradient-text-neon text-glitch" data-text={services[activeService]}>
+              <span className="gradient-text-neon">
                 {services[activeService]}
               </span>
               <span className="block text-3xl text-neon-yellow mt-2">
@@ -63,12 +51,12 @@ export default function ServicesHeroSection() {
             </span>
           </h1>
           
-          {/* Stats bar */}
+          {/* Stats bar - static */}
           <div 
-            className={`flex flex-wrap justify-center gap-8 mt-12 transition-all duration-1000 ${
+            className={`flex flex-wrap justify-center gap-8 mt-12 transition-all duration-700 ${
               isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
             }`}
-            style={{ animationDelay: '300ms' }}
+            style={{ animationDelay: '200ms' }}
           >
             {[
               { number: '200+', label: 'פרויקטים' },
@@ -77,7 +65,7 @@ export default function ServicesHeroSection() {
             ].map((stat, idx) => (
               <div 
                 key={idx}
-                className="px-6 py-3 bg-white/10 backdrop-blur-md border-2 border-white/20 rounded-none transform hover:scale-110 transition-all duration-300"
+                className="px-6 py-3 bg-white/10 backdrop-blur-md border-2 border-white/20 hover:bg-white/20 transition-all duration-300"
               >
                 <div className="text-3xl font-black text-neon-green">{stat.number}</div>
                 <div className="text-white/80 text-sm">{stat.label}</div>
@@ -87,9 +75,9 @@ export default function ServicesHeroSection() {
         </div>
       </div>
       
-      {/* Animated scroll indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
-        <div className="text-white/50">
+      {/* Simple scroll indicator */}
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2">
+        <div className="text-white/50 text-center">
           <div className="text-sm mb-2">גלול למטה לשירותים</div>
           <div className="text-3xl">↓</div>
         </div>

@@ -56,45 +56,42 @@ export function ProcessSection() {
                 <div 
                   key={index}
                   className="relative text-center"
-                  style={{ animationDelay: `${index * 150}ms` }}
                 >
                   {/* Step card */}
-                  <div className={`relative bg-white border-4 border-black shadow-brutal p-6 transform hover:shadow-brutal-lg hover:-translate-y-2 transition-all duration-300 hover:rotate-${index % 2 === 0 ? '1' : '-1'}`}>
-                    {/* Step number - brutal badge */}
-                    <div className={`absolute -top-4 -right-4 w-12 h-12 bg-${step.color} text-black border-4 border-black shadow-brutal flex items-center justify-center text-xl font-black animate-pulse`}>
+                  <div className="relative bg-white border-4 border-black shadow-brutal p-6 transform hover:shadow-brutal-lg hover:-translate-y-1 transition-all duration-300">
+                    {/* Step number - positioned on the line */}
+                    <div className="absolute -top-8 left-1/2 -translate-x-1/2 w-16 h-16 bg-black text-white flex items-center justify-center text-2xl font-black rounded-full border-4 border-white">
                       {index + 1}
                     </div>
                     
                     {/* Icon */}
-                    <div className="text-5xl mb-4 animate-bounce-in">
+                    <div className="text-5xl mb-4 mt-4">
                       {step.icon}
                     </div>
                     
                     {/* Content */}
-                    <h3 className="font-black text-xl mb-2 text-black">
+                    <h3 className={`font-black text-xl mb-2 text-${step.color}`}>
                       {step.title}
                     </h3>
-                    <p className="text-sm text-text-secondary font-medium">
+                    <p className="text-sm text-text-secondary">
                       {step.description}
                     </p>
                   </div>
-                  
-                  {/* Arrow for mobile */}
-                  {index < processSteps.length - 1 && (
-                    <div className="md:hidden flex justify-center mt-6">
-                      <div className="text-4xl text-black animate-bounce">↓</div>
-                    </div>
-                  )}
                 </div>
               ))}
             </div>
           </div>
           
-          {/* Bottom Note */}
+          {/* Bottom CTA */}
           <div className="text-center mt-16">
-            <div className="inline-block p-4 bg-neon-yellow text-black border-4 border-black shadow-brutal font-black">
-              כל פרויקט מקבל יחס VIP 👑
-            </div>
+            <p className="text-xl text-text-secondary mb-6 font-medium">
+              מוכנים להתחיל את המסע?
+            </p>
+            <a href="/contact" className="inline-flex">
+              <button className="px-8 py-4 bg-gradient-to-r from-neon-purple to-neon-blue text-white font-black text-lg border-4 border-black shadow-brutal hover:shadow-brutal-lg hover:-translate-y-1 transition-all duration-300">
+                בואו נתחיל →
+              </button>
+            </a>
           </div>
         </div>
       </div>

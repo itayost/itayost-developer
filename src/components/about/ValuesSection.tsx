@@ -12,7 +12,7 @@ export default function ValuesSection() {
       <div className="container">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-16">
-            <div className="inline-block px-8 py-3 bg-neon-green text-black font-black border-4 border-black shadow-brutal-lg mb-6 -rotate-2 animate-wiggle">
+            <div className="inline-block px-8 py-3 bg-neon-green text-black font-black border-4 border-black shadow-brutal-lg mb-6">
               🎯 הערכים שמנחים אותי
             </div>
             
@@ -27,23 +27,19 @@ export default function ValuesSection() {
               <Card
                 key={index}
                 variant={index % 2 === 0 ? 'brutal' : 'neon'}
-                className={`group cursor-pointer transition-all duration-500 overflow-hidden ${
-                  hoveredValue === index ? 'scale-105 z-10' : ''
+                className={`group cursor-pointer transition-all duration-300 overflow-hidden ${
+                  hoveredValue === index ? 'scale-[1.02] z-10' : ''
                 }`}
                 onMouseEnter={() => setHoveredValue(index)}
                 onMouseLeave={() => setHoveredValue(null)}
-                style={{ 
-                  transform: `rotate(${index % 4 === 0 ? -2 : index % 4 === 1 ? 2 : index % 4 === 2 ? -1 : 1}deg)`,
-                  animationDelay: `${index * 100}ms`
-                }}
               >
-                <div className={`absolute inset-0 bg-gradient-to-br ${value.color} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
+                <div className={`absolute inset-0 bg-gradient-to-br ${value.color} opacity-0 group-hover:opacity-100 transition-opacity duration-300`} />
                 
                 <CardContent className="relative p-8">
-                  {/* Icon with animation */}
+                  {/* Icon - static */}
                   <div className={`w-20 h-20 mb-6 flex items-center justify-center text-5xl transition-all duration-300 ${
                     hoveredValue === index 
-                      ? 'bg-white shadow-brutal-lg animate-bounce' 
+                      ? 'bg-white shadow-brutal-lg scale-105' 
                       : 'bg-gradient-to-br from-white to-neutral-50'
                   } border-4 border-black`}>
                     {value.icon}
@@ -60,13 +56,6 @@ export default function ValuesSection() {
                   }`}>
                     {value.description}
                   </p>
-                  
-                  {/* Hover indicator */}
-                  {hoveredValue === index && (
-                    <div className="absolute bottom-4 right-4 text-white font-black animate-pulse">
-                      ←
-                    </div>
-                  )}
                 </CardContent>
               </Card>
             ))}

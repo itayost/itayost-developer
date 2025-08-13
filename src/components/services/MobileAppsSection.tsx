@@ -14,12 +14,12 @@ export default function MobileAppsSection() {
         {/* Visual showcase */}
         <div className="relative">
           <div className="relative">
-            {/* Phone mockup */}
+            {/* Phone mockup - simplified */}
             <div className="aspect-[9/16] max-w-sm mx-auto bg-black border-8 border-black rounded-[3rem] shadow-brutal-xl relative overflow-hidden">
-              <div className="absolute inset-4 bg-gradient-to-br from-neon-blue via-neon-purple to-neon-pink rounded-[2rem] animate-gradient-shift">
+              <div className="absolute inset-4 bg-gradient-to-br from-neon-blue via-neon-purple to-neon-pink rounded-[2rem]">
                 <div className="h-full flex items-center justify-center">
                   <div className="text-white text-center p-8">
-                    <div className="text-6xl mb-4 animate-bounce">📱</div>
+                    <div className="text-6xl mb-4">📱</div>
                     <div className="text-2xl font-black mb-2">האפליקציה שלך</div>
                     <div className="text-sm opacity-80">חוויה מושלמת בכל מכשיר</div>
                   </div>
@@ -27,13 +27,15 @@ export default function MobileAppsSection() {
               </div>
             </div>
             
-            {/* Platform icons */}
+            {/* Platform icons - static */}
             <div className="absolute -top-8 left-1/2 -translate-x-1/2 flex gap-4">
               {mobilePlatforms.map((platform, idx) => (
                 <div
                   key={idx}
                   className={`w-16 h-16 bg-white border-4 border-black shadow-brutal flex items-center justify-center text-3xl cursor-pointer transition-all duration-300 ${
-                    selectedPlatform === idx ? 'bg-neon-yellow scale-110 -rotate-12' : 'hover:scale-105'
+                    selectedPlatform === idx 
+                      ? 'bg-neon-yellow -translate-y-1' 
+                      : 'hover:bg-gray-50'
                   }`}
                   onClick={() => setSelectedPlatform(idx)}
                 >
@@ -44,61 +46,50 @@ export default function MobileAppsSection() {
           </div>
         </div>
         
+        {/* Content */}
         <div>
-          {/* Brutal badge */}
-          <div className="inline-block px-6 py-2 bg-neon-blue text-white font-black border-4 border-black shadow-brutal mb-6 rotate-2">
-            📱 אפליקציות שמכורות
+          <div className="inline-block px-6 py-2 bg-neon-blue text-white font-black border-4 border-black shadow-brutal mb-6">
+            📱 מוביל עסקים קדימה
           </div>
           
           <h2 className="text-display font-black mb-6">
-            <span className="block">אפליקציות</span>
-            <span className="gradient-text-neon">שמשנות משחק</span>
+            <span>אפליקציות</span>
+            <br />
+            <span className="gradient-text">שמכורות</span>
           </h2>
           
           <p className="text-xl text-text-secondary mb-10 leading-relaxed font-medium">
-            חוויית משתמש מושלמת שהלקוחות שלך יתאהבו בה
+            אפליקציות שמשתמשים אוהבים - מהירות, יפות, ועובדות מושלם
           </p>
           
-          {/* Platform cards */}
-          <div className="grid grid-cols-2 gap-6 mb-10">
-            {mobilePlatforms.map((platform, index) => (
-              <div 
-                key={index}
-                className={`p-6 border-4 border-black transition-all duration-300 cursor-pointer ${
-                  selectedPlatform === index 
-                    ? 'bg-gradient-to-br from-neon-purple to-neon-blue text-white shadow-brutal-lg scale-105' 
-                    : 'bg-white shadow-brutal hover:shadow-brutal-md hover:-translate-y-1'
-                }`}
-                onClick={() => setSelectedPlatform(index)}
-              >
-                <div className="text-4xl mb-3">{platform.icon}</div>
-                <h4 className="font-black mb-1">{platform.name}</h4>
-                <p className={`text-sm ${selectedPlatform === index ? 'text-white/80' : 'text-text-tertiary'}`}>
-                  {platform.technologies}
-                </p>
-              </div>
-            ))}
-          </div>
-          
           {/* Features list */}
-          <div className="space-y-3 mb-10">
-            {['ביצועים מטורפים', 'עיצוב שמדהים', 'חוויה חלקה', 'עדכונים בזמן אמת'].map((feature, idx) => (
-              <div 
-                key={idx}
-                className="flex items-center gap-3 text-lg font-bold animate-fade-in"
-                style={{ animationDelay: `${idx * 100}ms` }}
-              >
-                <span className="text-neon-green text-2xl">✓</span>
-                <span>{feature}</span>
+          <div className="space-y-4 mb-10">
+            {[
+              'פיתוח ל-iOS ואנדרואיד במקביל',
+              'React Native - קוד אחד לכל הפלטפורמות',
+              'עיצוב UI/UX שמותאם למובייל',
+              'ביצועים מטורפים וחוויית משתמש חלקה',
+              'התממשקות עם APIs ושירותים חיצוניים',
+            ].map((feature, idx) => (
+              <div key={idx} className="flex items-start gap-3">
+                <span className="text-neon-blue font-black text-xl mt-0.5">✓</span>
+                <span className="text-lg">{feature}</span>
               </div>
             ))}
           </div>
           
-          <Link href="/contact">
-            <Button variant="glow" size="lg" pulse className="font-black">
-              בואו נבנה אפליקציה מטורפת
-            </Button>
-          </Link>
+          <div className="flex gap-4">
+            <Link href="/contact">
+              <Button variant="brutal" size="lg" className="font-black bg-neon-blue text-white border-black">
+                בואו נבנה אפליקציה →
+              </Button>
+            </Link>
+            <Link href="/portfolio#apps">
+              <Button variant="outline" size="lg">
+                ראו דוגמאות
+              </Button>
+            </Link>
+          </div>
         </div>
       </div>
     </div>

@@ -53,54 +53,47 @@ export default function StatsSection() {
   
   return (
     <section id="stats-section" className="section bg-gradient-to-br from-black via-dark-surface to-dark-elevated relative overflow-hidden">
-      {/* Animated background */}
+      {/* Simplified background */}
       <div className="absolute inset-0 pattern-grid opacity-10" />
-      <div className="absolute top-0 right-0 w-96 h-96 bg-neon-purple/20 rounded-full blur-3xl animate-float" />
-      <div className="absolute bottom-0 left-0 w-96 h-96 bg-neon-blue/20 rounded-full blur-3xl animate-float-slow" />
+      <div className="absolute top-0 right-0 w-96 h-96 bg-neon-purple/10 rounded-full blur-3xl" />
+      <div className="absolute bottom-0 left-0 w-96 h-96 bg-neon-blue/10 rounded-full blur-3xl" />
       
       <div className="container relative z-10">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-16">
-            <div className="inline-block px-8 py-3 bg-neon-yellow text-black font-black border-4 border-white shadow-brutal-lg mb-6 rotate-2">
+            <div className="inline-block px-8 py-3 bg-neon-yellow text-black font-black border-4 border-white shadow-brutal-lg mb-6">
               📊 במספרים
             </div>
             
             <h2 className="text-display font-black text-white mb-6">
               <span className="gradient-text-neon">תוצאות</span>
-              <span className="block text-4xl text-white/90 mt-2">שמדברות בעד עצמן</span>
+              <span className="block text-4xl text-white/90 mt-2">שמדברות  בעד  עצמן</span>
             </h2>
           </div>
           
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+          {/* Stats grid */}
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
             {stats.map((stat, index) => (
-              <div 
+              <div
                 key={index}
-                className="relative group"
-                style={{ animationDelay: `${index * 100}ms` }}
+                className="text-center group hover:scale-105 transition-all duration-300"
               >
-                <div className={`p-8 bg-white/10 backdrop-blur-md border-4 border-white/20 text-center transition-all duration-500 hover:scale-110 hover:bg-${stat.color}/20 hover:border-${stat.color} animate-fade-up`}>
-                  {/* Icon */}
-                  <div className="text-5xl mb-4 animate-bounce" style={{ animationDelay: `${index * 200}ms` }}>
-                    {stat.icon}
-                  </div>
-                  
-                  {/* Counter */}
-                  <div className={`text-5xl font-black text-${stat.color} mb-2`}>
+                <div className={`w-32 h-32 mx-auto mb-4 bg-gradient-to-br from-${stat.color} to-transparent border-4 border-white shadow-brutal-lg flex items-center justify-center hover:shadow-brutal-xl transition-all duration-300`}>
+                  <span className="text-5xl">{stat.icon}</span>
+                </div>
+                
+                <div className="text-white">
+                  <div className="text-4xl font-black mb-2">
                     {isVisible ? (
-                      <>
-                        {stat.value.includes('+') && counters[index] > 0 && `${counters[index]}+`}
-                        {stat.value.includes('%') && counters[index] > 0 && `${counters[index]}%`}
-                        {stat.value === '24/7' && '24/7'}
-                        {stat.value.includes('+') && !stat.value.includes('%') && counters[index] === 0 && '0+'}
-                      </>
+                      stat.value.includes('+') ? `${counters[index]}+` :
+                      stat.value.includes('%') ? `${counters[index]}%` :
+                      stat.value.includes('/') ? stat.value :
+                      counters[index]
                     ) : '0'}
                   </div>
-                  
-                  {/* Label */}
-                  <p className="text-white/80 font-bold">{stat.label}</p>
-                  
-                  {/* Hover effect */}
-                  <div className={`absolute inset-0 border-4 border-${stat.color} opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none`} />
+                  <div className="text-lg font-bold text-white/80">
+                    {stat.label}
+                  </div>
                 </div>
               </div>
             ))}

@@ -10,15 +10,9 @@ export function ContactCTASection() {
   
   return (
     <section className="section bg-gradient-to-br from-neon-purple via-neon-blue to-neon-green relative overflow-hidden">
-      {/* Animated background */}
+      {/* Simplified background */}
       <div className="absolute inset-0 bg-black/50" />
-      <div className="absolute inset-0 bg-mesh-gradient opacity-30 animate-float-slow" />
-      
-      {/* Floating emojis */}
-      <div className="absolute top-10 left-10 text-6xl animate-float opacity-20">🚀</div>
-      <div className="absolute bottom-10 right-10 text-6xl animate-rotate opacity-20">💎</div>
-      <div className="absolute top-1/3 right-20 text-4xl animate-wiggle opacity-20">⚡</div>
-      <div className="absolute bottom-1/3 left-20 text-5xl animate-bounce opacity-20">🎯</div>
+      <div className="absolute inset-0 bg-mesh-gradient opacity-20" />
       
       <div className="container relative z-10">
         <div className="max-w-5xl mx-auto text-center">
@@ -28,13 +22,10 @@ export function ContactCTASection() {
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
           >
-            <span className={`inline-block transition-all duration-500 ${isHovered ? 'rotate-3' : ''}`}>
-              מוכנים
-            </span>{' '}
-            <span className={`inline-block transition-all duration-500 ${isHovered ? '-rotate-3' : ''}`}>
-              להתחיל?
+            <span className={`inline-block transition-all duration-500 ${isHovered ? 'scale-110' : ''}`}>
+              מוכנים להתחיל?
             </span>
-            <span className="block text-6xl mt-4 gradient-text-neon animate-pulse">
+            <span className="block text-6xl mt-4 gradient-text-neon">
               בואו נעשה משהו מטורף! 🔥
             </span>
           </h2>
@@ -49,7 +40,7 @@ export function ContactCTASection() {
               href={CONTACT_CTAS.PHONE.href}
               className="group"
             >
-              <div className="bg-white text-black border-4 border-black shadow-brutal p-6 transform transition-all duration-300 group-hover:shadow-brutal-xl group-hover:-translate-y-2 group-hover:rotate-1">
+              <div className="bg-white text-black border-4 border-black shadow-brutal p-6 transform transition-all duration-300 group-hover:shadow-brutal-xl group-hover:-translate-y-1">
                 <div className="text-4xl mb-2">📞</div>
                 <div className="font-black text-lg">התקשר עכשיו</div>
                 <div className="text-sm font-bold text-text-secondary">054-4994417</div>
@@ -60,7 +51,7 @@ export function ContactCTASection() {
               href={CONTACT_CTAS.EMAIL.href}
               className="group"
             >
-              <div className="bg-neon-yellow text-black border-4 border-black shadow-brutal p-6 transform transition-all duration-300 group-hover:shadow-brutal-xl group-hover:-translate-y-2 group-hover:-rotate-1">
+              <div className="bg-neon-yellow text-black border-4 border-black shadow-brutal p-6 transform transition-all duration-300 group-hover:shadow-brutal-xl group-hover:-translate-y-1">
                 <div className="text-4xl mb-2">✉️</div>
                 <div className="font-black text-lg">שלח אימייל</div>
                 <div className="text-sm font-bold text-text-secondary">מענה תוך 24 שעות</div>
@@ -73,7 +64,7 @@ export function ContactCTASection() {
               rel="noopener noreferrer"
               className="group"
             >
-              <div className="bg-neon-green text-black border-4 border-black shadow-brutal p-6 transform transition-all duration-300 group-hover:shadow-brutal-xl group-hover:-translate-y-2 group-hover:rotate-1">
+              <div className="bg-neon-green text-black border-4 border-black shadow-brutal p-6 transform transition-all duration-300 group-hover:shadow-brutal-xl group-hover:-translate-y-1">
                 <div className="text-4xl mb-2">💬</div>
                 <div className="font-black text-lg">WhatsApp</div>
                 <div className="text-sm font-bold text-text-secondary">תשובה מיידית</div>
@@ -85,7 +76,7 @@ export function ContactCTASection() {
           <div className="mb-12">
             <p className="text-white/80 mb-4 text-lg">מעדיפים טופס?</p>
             <Link href="/contact">
-              <Button variant="glow" size="xl" pulse className="text-xl font-black">
+              <Button variant="glow" size="xl" className="text-xl font-black">
                 מלא טופס ונחזור אליך מהר 🚀
               </Button>
             </Link>

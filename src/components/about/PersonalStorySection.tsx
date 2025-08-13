@@ -5,65 +5,26 @@ import { useState } from 'react';
 
 export default function PersonalStorySection() {
   const [activeTimeline, setActiveTimeline] = useState(0);
-  const [isFlipped, setIsFlipped] = useState(false);
   
   return (
     <section className="section bg-gradient-to-br from-white via-neutral-50 to-neon-purple/5">
       <div className="container">
         <div className="max-w-6xl mx-auto">
           <div className="grid lg:grid-cols-3 gap-12 items-start">
-            {/* Profile Card - Flippable */}
+            {/* Profile Card - Static */}
             <div className="lg:col-span-1">
               <div className="sticky top-24">
-                <div 
-                  className="relative cursor-pointer"
-                  onClick={() => setIsFlipped(!isFlipped)}
-                >
-                  {/* Card container with flip animation */}
-                  <div className={`transition-all duration-700 transform-style-3d ${
-                    isFlipped ? 'rotate-y-180' : ''
-                  }`}>
-                    {/* Front side */}
-                    <div className={`${isFlipped ? 'hidden' : 'block'}`}>
-                      <div className="bg-gradient-to-br from-neon-purple to-neon-blue p-8 border-8 border-black shadow-brutal-xl">
-                        <div className="aspect-square bg-white/10 backdrop-blur-md flex items-center justify-center text-9xl">
-                          {personalInfo.profileEmoji}
-                        </div>
-                        <div className="mt-6 text-center text-white">
-                          <h2 className="text-3xl font-black mb-2">{personalInfo.name}</h2>
-                          <p className="text-xl font-bold mb-4">{personalInfo.title}</p>
-                          <p className="text-neon-yellow font-black">{personalInfo.tagline}</p>
-                        </div>
-                      </div>
-                    </div>
-                    
-                    {/* Back side - Fun facts */}
-                    <div className={`${!isFlipped ? 'hidden' : 'block'}`}>
-                      <div className="bg-gradient-to-br from-neon-yellow to-neon-green p-8 border-8 border-black shadow-brutal-xl">
-                        <div className="text-center">
-                          <h3 className="text-2xl font-black mb-6 text-black">Fun Facts</h3>
-                          <div className="space-y-4 text-black">
-                            <div className="p-4 bg-white/80 border-4 border-black">
-                              <span className="text-3xl">☕</span>
-                              <p className="font-bold">5 כוסות קפה ביום</p>
-                            </div>
-                            <div className="p-4 bg-white/80 border-4 border-black">
-                              <span className="text-3xl">🌙</span>
-                              <p className="font-bold">עובד הכי טוב בלילה</p>
-                            </div>
-                            <div className="p-4 bg-white/80 border-4 border-black">
-                              <span className="text-3xl">🎮</span>
-                              <p className="font-bold">גיימר בזמן הפנוי</p>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                <div className="bg-gradient-to-br from-neon-purple to-neon-blue p-8 border-8 border-black shadow-brutal-xl">
+                  <div className="aspect-square bg-white/10 backdrop-blur-md flex items-center justify-center text-9xl">
+                    {personalInfo.profileEmoji}
                   </div>
-                  
-                  {/* Flip indicator */}
-                  <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 px-4 py-1 bg-black text-white text-xs font-bold animate-pulse">
-                    לחץ להפוך →
+                  <div className="mt-6 text-center text-white">
+                    <h2 className="text-3xl font-black mb-2">{personalInfo.name}</h2>
+                    <p className="text-xl font-bold mb-4">{personalInfo.title}</p>
+                    <p className="text-neon-yellow font-black">{personalInfo.tagline}</p>
+                  </div>
+                  <div className="mt-4 p-4 bg-white/10 backdrop-blur-sm rounded-lg">
+                    <p className="text-white text-sm font-medium">{personalInfo.funFact}</p>
                   </div>
                 </div>
               </div>
@@ -71,16 +32,12 @@ export default function PersonalStorySection() {
             
             {/* Story Content */}
             <div className="lg:col-span-2">
-              {/* Story blocks with brutal cards */}
+              {/* Story sections */}
               <div className="space-y-8">
-                {Object.entries(storyContent).slice(0, 4).map(([key, text], idx) => (
+                {[storyContent.intro, storyContent.journey, storyContent.mission].map((text, idx) => (
                   <div 
-                    key={key}
-                    className={`p-8 border-4 border-black shadow-brutal-lg bg-white transform transition-all duration-500 hover:shadow-brutal-xl hover:-translate-y-1 animate-fade-up`}
-                    style={{ 
-                      transform: `rotate(${idx % 2 === 0 ? -1 : 1}deg)`,
-                      animationDelay: `${idx * 100}ms`
-                    }}
+                    key={idx}
+                    className="p-8 bg-white border-4 border-black shadow-brutal-lg hover:shadow-brutal-xl transition-all duration-300"
                   >
                     <div className="text-lg leading-relaxed font-medium">
                       {text}
@@ -91,7 +48,7 @@ export default function PersonalStorySection() {
               
               {/* Motto */}
               <div className="mt-12 text-center">
-                <div className="inline-block px-8 py-4 bg-black text-neon-yellow font-black text-2xl border-4 border-neon-yellow shadow-brutal-lg rotate-2 animate-wiggle">
+                <div className="inline-block px-8 py-4 bg-black text-neon-yellow font-black text-2xl border-4 border-neon-yellow shadow-brutal-lg">
                   "{storyContent.motto}"
                 </div>
               </div>
@@ -110,7 +67,7 @@ export default function PersonalStorySection() {
                       onClick={() => setActiveTimeline(idx)}
                       className={`px-6 py-3 font-black border-4 border-black transition-all duration-300 ${
                         activeTimeline === idx 
-                          ? `bg-${item.color} shadow-brutal-lg scale-110 -rotate-2` 
+                          ? `bg-${item.color} shadow-brutal-lg scale-105` 
                           : 'bg-white hover:shadow-brutal'
                       }`}
                     >
@@ -132,7 +89,7 @@ export default function PersonalStorySection() {
                       style={{ backgroundColor: `var(--${item.color})` }}
                     >
                       <div className="flex items-start gap-6">
-                        <div className="text-6xl animate-bounce">{item.icon}</div>
+                        <div className="text-6xl">{item.icon}</div>
                         <div>
                           <h4 className="text-2xl font-black mb-2 text-white">{item.title}</h4>
                           <p className="text-lg text-white/90 font-medium">{item.description}</p>

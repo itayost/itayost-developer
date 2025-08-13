@@ -16,7 +16,7 @@ export default function FeaturedProjectSection() {
         <div className="max-w-7xl mx-auto">
           {/* Section header */}
           <div className="text-center mb-12">
-            <div className="inline-block px-8 py-3 bg-gradient-to-r from-neon-purple to-neon-blue text-white font-black border-4 border-black shadow-brutal-lg mb-6 -rotate-2">
+            <div className="inline-block px-8 py-3 bg-gradient-to-r from-neon-purple to-neon-blue text-white font-black border-4 border-black shadow-brutal-lg mb-6">
               ⭐ הפרויקט המומלץ שלנו ⭐
             </div>
           </div>
@@ -28,20 +28,20 @@ export default function FeaturedProjectSection() {
               <div className="relative bg-gradient-to-br from-neon-purple via-neon-blue to-neon-pink p-8 lg:p-12">
                 {/* Project type badge */}
                 <div className="absolute top-8 right-8 z-10">
-                  <span className="px-4 py-2 bg-neon-yellow text-black font-black border-4 border-black shadow-brutal rotate-12">
+                  <span className="px-4 py-2 bg-neon-yellow text-black font-black border-4 border-black shadow-brutal">
                     {featuredProject.type}
                   </span>
                 </div>
                 
-                {/* Main visual */}
+                {/* Main visual - simplified */}
                 <div className="aspect-video bg-white/10 backdrop-blur-md border-8 border-white/20 shadow-brutal-lg flex items-center justify-center relative overflow-hidden">
-                  {/* Animated code background */}
+                  {/* Static code background */}
                   <div className="absolute inset-0 p-6 font-mono text-xs text-neon-green/30">
-                    <div className="animate-typing">// Building amazing experiences</div>
-                    <div className="animate-typing" style={{ animationDelay: '0.5s' }}>const success = true;</div>
-                    <div className="animate-typing" style={{ animationDelay: '1s' }}>return happiness(∞);</div>
+                    <div>// Building amazing experiences</div>
+                    <div className="mt-2">const success = true;</div>
+                    <div className="mt-2">return happiness(∞);</div>
                   </div>
-                  <span className="text-8xl animate-float">{featuredProject.icon}</span>
+                  <span className="text-8xl">{featuredProject.icon}</span>
                 </div>
                 
                 {/* Results badges */}
@@ -49,8 +49,7 @@ export default function FeaturedProjectSection() {
                   {Object.entries(featuredProject.results).map(([key, value], idx) => (
                     <div 
                       key={key}
-                      className="bg-white/90 backdrop-blur-sm p-4 border-4 border-black shadow-brutal text-center transform hover:scale-105 transition-all duration-300"
-                      style={{ transform: `rotate(${idx % 2 === 0 ? 2 : -2}deg)` }}
+                      className="bg-white/90 backdrop-blur-sm p-4 border-4 border-black shadow-brutal text-center hover:scale-[1.02] transition-all duration-300"
                     >
                       <div className="text-2xl font-black text-neon-purple">{value}</div>
                       <div className="text-xs text-black font-bold">
@@ -95,55 +94,36 @@ export default function FeaturedProjectSection() {
                 {/* Tab content */}
                 <div className="mb-8">
                   {activeTab === 'overview' && (
-                    <div className="space-y-4 animate-fade-in">
-                      <p className="text-lg text-text-secondary leading-relaxed">
-                        {featuredProject.description}
-                      </p>
-                      <blockquote className="border-r-8 border-neon-purple pr-6 py-4 bg-neutral-50">
-                        <p className="text-lg italic mb-3">
-                          "{featuredProject.testimonial.text}"
-                        </p>
-                        <footer className="text-sm font-bold">
-                          — {featuredProject.testimonial.author}, {featuredProject.testimonial.role}
-                        </footer>
-                      </blockquote>
-                    </div>
+                    <p className="text-lg leading-relaxed">
+                      {featuredProject.overview}
+                    </p>
                   )}
                   
                   {activeTab === 'features' && (
-                    <div className="grid grid-cols-2 gap-4 animate-fade-in">
+                    <ul className="space-y-3">
                       {featuredProject.features.map((feature, idx) => (
-                        <div 
+                        <li 
                           key={idx}
-                          className={`p-4 border-4 border-black transition-all duration-300 cursor-pointer ${
-                            hoveredFeature === idx 
-                              ? 'bg-gradient-to-br from-neon-purple to-neon-blue text-white shadow-brutal-md -translate-y-1' 
-                              : 'bg-white hover:shadow-brutal'
-                          }`}
+                          className="flex items-start gap-3 transition-all duration-200"
                           onMouseEnter={() => setHoveredFeature(idx)}
                           onMouseLeave={() => setHoveredFeature(null)}
+                          style={{
+                            transform: hoveredFeature === idx ? 'translateX(5px)' : 'translateX(0)'
+                          }}
                         >
-                          <div className="flex items-start gap-3">
-                            <span className={`text-2xl font-black ${hoveredFeature === idx ? 'text-neon-yellow' : 'text-neon-green'}`}>
-                              ✓
-                            </span>
-                            <span className="font-medium text-sm">{feature}</span>
-                          </div>
-                        </div>
+                          <span className="text-neon-green font-black text-xl">✓</span>
+                          <span className="text-lg">{feature}</span>
+                        </li>
                       ))}
-                    </div>
+                    </ul>
                   )}
                   
                   {activeTab === 'tech' && (
-                    <div className="flex flex-wrap gap-3 animate-fade-in">
+                    <div className="flex flex-wrap gap-3">
                       {featuredProject.technologies.map((tech, idx) => (
                         <span 
-                          key={tech}
-                          className="px-6 py-3 bg-gradient-to-r from-neon-purple to-neon-blue text-white font-bold border-4 border-black shadow-brutal transform hover:scale-110 transition-all duration-300"
-                          style={{ 
-                            transform: `rotate(${idx % 3 === 0 ? -2 : idx % 3 === 1 ? 2 : 0}deg)`,
-                            animationDelay: `${idx * 50}ms`
-                          }}
+                          key={idx}
+                          className="px-4 py-2 bg-gradient-to-r from-neon-purple to-neon-blue text-white font-bold border-2 border-black shadow-brutal hover:scale-105 transition-all duration-300"
                         >
                           {tech}
                         </span>
@@ -153,11 +133,18 @@ export default function FeaturedProjectSection() {
                 </div>
                 
                 {/* CTA */}
-                <Link href="/contact">
-                  <Button variant="glow" size="lg" pulse className="font-black">
-                    רוצה תוצאות דומות? בואו נדבר!
-                  </Button>
-                </Link>
+                <div className="flex gap-4">
+                  <Link href="/contact">
+                    <Button variant="brutal" size="lg" className="font-black">
+                      רוצה פרויקט דומה? →
+                    </Button>
+                  </Link>
+                  <Link href={featuredProject.link || '#'}>
+                    <Button variant="outline" size="lg">
+                      בקר באתר ↗
+                    </Button>
+                  </Link>
+                </div>
               </div>
             </div>
           </Card>

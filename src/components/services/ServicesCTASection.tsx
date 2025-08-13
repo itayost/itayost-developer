@@ -10,10 +10,10 @@ export default function ServicesCTASection() {
   
   return (
     <section className="section bg-gradient-to-br from-neon-purple via-black to-neon-blue relative overflow-hidden">
-      {/* Animated background elements */}
+      {/* Simple gradient background */}
       <div className="absolute inset-0">
-        <div className="absolute top-0 left-0 w-96 h-96 bg-neon-pink/20 rounded-full blur-3xl animate-float" />
-        <div className="absolute bottom-0 right-0 w-96 h-96 bg-neon-yellow/20 rounded-full blur-3xl animate-float-slow" />
+        <div className="absolute top-0 left-0 w-96 h-96 bg-neon-pink/10 rounded-full blur-3xl" />
+        <div className="absolute bottom-0 right-0 w-96 h-96 bg-neon-yellow/10 rounded-full blur-3xl" />
       </div>
       
       {/* Pattern overlay */}
@@ -21,14 +21,14 @@ export default function ServicesCTASection() {
       
       <div className="container relative z-10">
         <div className="max-w-4xl mx-auto text-center">
-          {/* Animated badge */}
-          <div className="inline-block px-8 py-3 bg-neon-yellow text-black font-black border-4 border-white shadow-brutal-lg mb-8 animate-wiggle">
+          {/* Static badge */}
+          <div className="inline-block px-8 py-3 bg-neon-yellow text-black font-black border-4 border-white shadow-brutal-lg mb-8">
             🤔 עדיין מתלבטים?
           </div>
           
           <h2 className="text-display font-black text-white mb-6">
             <span className="block text-shadow-brutal">בואו נמצא יחד</span>
-            <span className="gradient-text-neon text-glitch" data-text="את הפתרון המושלם">
+            <span className="gradient-text-neon">
               את הפתרון המושלם
             </span>
           </h2>
@@ -48,43 +48,40 @@ export default function ServicesCTASection() {
                 variant="brutal"
                 size="xl"
                 className={`font-black text-xl min-w-[280px] transition-all duration-300 ${
-                  isHovered ? 'scale-110 rotate-2' : ''
+                  isHovered ? 'shadow-brutal-xl -translate-y-1' : ''
                 }`}
               >
-                <span className="text-3xl mr-3">📞</span>
-                דברו איתנו עכשיו
+                <span className="mr-2 text-2xl">📞</span>
+                דברו איתי עכשיו
               </Button>
             </a>
             
             <Link href="/contact">
-              <Button 
+              <Button
                 variant="glow"
                 size="xl"
-                pulse
                 className="font-black text-xl min-w-[280px]"
               >
-                <span className="text-3xl mr-3">💌</span>
-                שלחו פרטים
+                <span className="mr-2">✉️</span>
+                שלחו הודעה
               </Button>
             </Link>
           </div>
           
           {/* Trust indicators */}
-          <div className="flex flex-wrap justify-center gap-8 mt-16">
-            {[
-              { icon: '⚡', text: 'מענה מהיר' },
-              { icon: '💯', text: 'ללא עלות' },
-              { icon: '🎯', text: 'ייעוץ מקצועי' },
-            ].map((item, idx) => (
-              <div 
-                key={idx}
-                className="flex items-center gap-3 px-6 py-3 bg-white/10 backdrop-blur-sm border-2 border-white/20 text-white font-bold animate-fade-up"
-                style={{ animationDelay: `${idx * 100}ms` }}
-              >
-                <span className="text-2xl">{item.icon}</span>
-                <span>{item.text}</span>
-              </div>
-            ))}
+          <div className="flex flex-wrap justify-center gap-6 mt-12 text-white">
+            <div className="flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full">
+              <span className="text-neon-green">✓</span>
+              <span>ייעוץ ראשוני חינם</span>
+            </div>
+            <div className="flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full">
+              <span className="text-neon-green">✓</span>
+              <span>מחירים הוגנים</span>
+            </div>
+            <div className="flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full">
+              <span className="text-neon-green">✓</span>
+              <span>ללא התחייבות</span>
+            </div>
           </div>
         </div>
       </div>
