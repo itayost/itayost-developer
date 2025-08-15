@@ -144,9 +144,10 @@ export default function Header() {
 
             {/* Mobile Menu Button - Brutal Burger */}
             <button
-              className="relative md:hidden w-12 h-12 bg-neon-yellow border-4 border-black shadow-brutal hover:shadow-brutal-lg transition-all duration-300"
+              className="relative md:hidden w-12 h-12 bg-neon-yellow border-4 border-black shadow-brutal hover:shadow-brutal-lg transition-all duration-300 touch-manipulation tap-highlight no-select"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               aria-label="תפריט"
+              aria-expanded={isMenuOpen}
             >
               <div className="w-full h-full flex flex-col justify-center items-center gap-1">
                 <span className={`block w-6 h-1 bg-black transition-all duration-300 ${

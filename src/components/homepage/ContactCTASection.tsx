@@ -18,29 +18,29 @@ export function ContactCTASection() {
         <div className="max-w-5xl mx-auto text-center">
           {/* Main Heading */}
           <h2 
-            className="text-display font-black mb-8 text-white"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-display font-black mb-6 sm:mb-8 text-white"
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
           >
             <span className={`inline-block transition-all duration-500 ${isHovered ? 'scale-110' : ''}`}>
               מוכנים להתחיל?
             </span>
-            <span className="block text-6xl mt-4 gradient-text-neon">
+            <span className="block text-3xl sm:text-4xl md:text-5xl lg:text-6xl mt-4 gradient-text-neon">
               בואו נעשה משהו מטורף! 🔥
             </span>
           </h2>
           
-          <p className="text-2xl text-white/90 mb-12 font-medium">
+          <p className="text-lg sm:text-xl md:text-2xl text-white/90 mb-8 sm:mb-12 font-medium">
             הפרויקט הבא שלנו יכול להיות המהלך שישנה את העסק שלכם
           </p>
           
           {/* CTAs Grid */}
-          <div className="grid sm:grid-cols-3 gap-6 mb-12 max-w-3xl mx-auto">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 mb-8 sm:mb-12 max-w-3xl mx-auto">
             <a
               href={CONTACT_CTAS.PHONE.href}
               className="group"
             >
-              <div className="bg-white text-black border-4 border-black shadow-brutal p-6 transform transition-all duration-300 group-hover:shadow-brutal-xl group-hover:-translate-y-1">
+              <div className="bg-white text-black border-4 border-black shadow-brutal p-4 sm:p-6 transform transition-all duration-300 group-hover:shadow-brutal-xl group-hover:-translate-y-1">
                 <div className="text-4xl mb-2">📞</div>
                 <div className="font-black text-lg">התקשר עכשיו</div>
                 <div className="text-sm font-bold text-text-secondary">054-4994417</div>

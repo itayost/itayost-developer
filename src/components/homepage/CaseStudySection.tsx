@@ -27,7 +27,7 @@ export function CaseStudySection() {
           
           {/* Case study content */}
           <div 
-            className="grid lg:grid-cols-2 gap-12 items-center"
+            className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center"
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
           >
@@ -76,7 +76,7 @@ export function CaseStudySection() {
             
             {/* Visual element */}
             <div className="relative order-1 lg:order-2">
-              <div className={`aspect-[4/3] bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-sm border-4 border-black shadow-brutal-xl overflow-hidden transform transition-all duration-500 ${
+              <div className={`aspect-square sm:aspect-[4/3] bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-sm border-4 border-black shadow-brutal-xl overflow-hidden transform transition-all duration-500 ${
                 isHovered ? 'scale-105' : 'scale-100'
               }`}>
                 <div className="w-full h-full flex items-center justify-center relative">

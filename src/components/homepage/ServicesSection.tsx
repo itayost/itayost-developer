@@ -57,12 +57,12 @@ export default function ServicesSection() {
         </div>
         
         {/* Services Grid - Bento style with less rotation */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 max-w-6xl mx-auto">
           {/* Large card - Websites */}
           <Card
             variant="brutal"
             hover="lift"
-            className={`lg:col-span-2 lg:row-span-2 border-4 transition-all duration-300 ${
+            className={`col-span-1 md:col-span-2 lg:col-span-2 md:row-span-2 border-4 transition-all duration-300 ${
               hoveredCard === 'websites' ? 'scale-105' : ''
             }`}
             onMouseEnter={() => setHoveredCard('websites')}

@@ -10,7 +10,7 @@ export default function MobileAppsSection() {
   
   return (
     <div id="apps" className="mb-32 scroll-mt-24">
-      <div className="grid lg:grid-cols-2 gap-16 items-center">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
         {/* Visual showcase */}
         <div className="relative">
           <div className="relative">

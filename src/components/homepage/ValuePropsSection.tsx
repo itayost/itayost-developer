@@ -51,14 +51,14 @@ export function ValuePropsSection() {
           </div>
           
           {/* Value props grid */}
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
             {/* Props list */}
             <div>
-              <div className="space-y-6">
+              <div className="space-y-4 sm:space-y-6">
                 {valueProps.map((prop, index) => (
                   <div
                     key={index}
-                    className={`group flex items-start gap-6 p-6 border-2 transition-all duration-300 cursor-pointer ${
+                    className={`group flex flex-col sm:flex-row items-start gap-4 sm:gap-6 p-4 sm:p-6 border-2 transition-all duration-300 cursor-pointer ${
                       activeIndex === index 
                         ? 'bg-white/10 border-white shadow-brutal-lg' 
                         : 'border-white/20 hover:border-white/40'

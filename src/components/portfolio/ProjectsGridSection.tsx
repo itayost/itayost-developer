@@ -1,89 +1,128 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { Card, CardContent } from '@/components/ui/Card';
+import { projects } from '@/data/portfolio';
+import { useState } from 'react';
 
-export default function PortfolioHeroSection() {
-  const [isLoaded, setIsLoaded] = useState(false);
-  const [currentWord, setCurrentWord] = useState(0);
-  const words = ['גאים', 'מתרגשים', 'נהנים'];
+export default function ProjectsGridSection() {
+  const [hoveredProject, setHoveredProject] = useState<number | null>(null);
+  const [selectedType, setSelectedType] = useState<string>('all');
   
-  useEffect(() => {
-    setIsLoaded(true);
-    const interval = setInterval(() => {
-      setCurrentWord((prev) => (prev + 1) % words.length);
-    }, 3000); // Slower rotation
-    return () => clearInterval(interval);
-  }, []);
+  const types = ['all', 'E-Commerce', 'Mobile App', 'Business System', 'Corporate Site'];
+  const filteredProjects = selectedType === 'all' 
+    ? projects 
+    : projects.filter(p => p.type === selectedType);
   
   return (
-    <section className="relative min-h-[60vh] flex items-center overflow-hidden bg-gradient-to-br from-black via-dark-surface to-neon-purple/20">
-      {/* Simple grid background */}
-      <div className="absolute inset-0 pattern-grid opacity-10" />
-      
-      {/* Static gradient shapes */}
-      <div className="absolute top-10 right-10 w-64 h-64 bg-neon-yellow/10 rounded-full blur-3xl" />
-      <div className="absolute bottom-10 left-10 w-96 h-96 bg-neon-blue/10 rounded-full blur-3xl" />
-      
-      <div className="container relative z-10">
-        <div className="max-w-5xl mx-auto text-center">
-          {/* Static badge */}
-          <div 
-            className={`inline-flex items-center gap-2 px-8 py-4 bg-neon-yellow text-black border-4 border-white shadow-brutal-lg font-black mb-8 transform transition-all duration-700 ${
-              isLoaded ? 'translate-y-0 opacity-100' : '-translate-y-10 opacity-0'
-            }`}
-          >
-            <span className="text-2xl">⭐</span>
-            פרויקטים שעושים רעש
-            <span className="text-2xl">⭐</span>
+    <section className="section bg-gradient-to-br from-neutral-100 via-white to-neon-yellow/5">
+      <div className="container">
+        <div className="text-center mb-12">
+          <div className="inline-block px-8 py-3 bg-neon-green text-black font-black border-4 border-black shadow-brutal-lg mb-6">
+            🚀 עוד פרויקטים מטורפים
           </div>
           
-          {/* Clean headline */}
-          <h1 
-            className={`text-display font-black mb-8 text-white transition-all duration-700 ${
-              isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
-            }`}
-          >
-            <span className="block text-shadow-brutal mb-4">
-              עבודות שאנחנו
-            </span>
-            <span className="block text-7xl">
-              <span className="gradient-text-neon">
-                {words[currentWord]} בהן
-              </span>
-            </span>
-          </h1>
-          
-          {/* Subtitle */}
-          <p 
-            className={`text-2xl text-white/90 font-medium mb-12 transition-all duration-700 ${
-              isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
-            }`}
-            style={{ animationDelay: '200ms' }}
-          >
-            פרויקטים אמיתיים, תוצאות אמיתיות, סיפורי הצלחה אמיתיים
-          </p>
-          
-          {/* Stats bar */}
-          <div 
-            className={`flex flex-wrap justify-center gap-8 transition-all duration-700 ${
-              isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
-            }`}
-            style={{ animationDelay: '300ms' }}
-          >
-            {[
-              { number: '50+', label: 'אתרים' },
-              { number: '30+', label: 'אפליקציות' },
-              { number: '20+', label: 'מערכות' },
-            ].map((stat, idx) => (
-              <div 
-                key={idx}
-                className="px-6 py-3 bg-white/10 backdrop-blur-md border-2 border-white/20 hover:bg-white/20 transition-all duration-300"
-              >
-                <div className="text-3xl font-black text-neon-green">{stat.number}</div>
-                <div className="text-white/80 text-sm">{stat.label}</div>
+          <h2 className="text-display font-black mb-6">
+            <span className="gradient-text-fire">מגוון פתרונות</span>
+            <span className="block text-4xl text-text-primary mt-2">לכל סוג של עסק</span>
+          </h2>
+        </div>
+        
+        {/* Filter buttons */}
+        <div className="flex flex-wrap justify-center gap-4 mb-12">
+          {types.map((type) => (
+            <button
+              key={type}
+              onClick={() => setSelectedType(type)}
+              className={`px-6 py-2 font-black border-4 border-black transition-all duration-300 ${
+                selectedType === type 
+                  ? 'bg-neon-yellow shadow-brutal-md scale-105' 
+                  : 'bg-white hover:shadow-brutal hover:scale-[1.02]'
+              }`}
+            >
+              {type === 'all' ? 'הכל' : type}
+            </button>
+          ))}
+        </div>
+        
+        {/* Projects grid */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {filteredProjects.map((project, index) => (
+            <Card
+              key={project.id}
+              variant={index % 3 === 0 ? 'brutal' : index % 3 === 1 ? 'neon' : 'glass'}
+              className={`group cursor-pointer transition-all duration-300 overflow-hidden ${
+                hoveredProject === project.id ? 'scale-[1.02] z-10' : ''
+              }`}
+              onMouseEnter={() => setHoveredProject(project.id)}
+              onMouseLeave={() => setHoveredProject(null)}
+            >
+              {/* Project visual */}
+              <div className={`aspect-video bg-gradient-to-br ${project.color} relative overflow-hidden`}>
+                {/* Static background pattern */}
+                <div className="absolute inset-0 pattern-dots opacity-10" />
+                
+                {/* Project icon */}
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <span className={`text-8xl transition-all duration-300 ${
+                    hoveredProject === project.id ? 'scale-110' : ''
+                  }`}>
+                    {project.icon}
+                  </span>
+                </div>
+                
+                {/* Type badge */}
+                <div className="absolute top-4 right-4">
+                  <span className="px-3 py-1 bg-white/90 backdrop-blur-sm text-black font-bold text-xs border-2 border-black shadow-brutal">
+                    {project.type}
+                  </span>
+                </div>
+                
+                {/* Results badge (if exists) */}
+                {project.results && (
+                  <div className="absolute bottom-4 left-4">
+                    <span className="px-3 py-1 bg-neon-yellow text-black font-black text-xs border-2 border-black shadow-brutal">
+                      {project.results}
+                    </span>
+                  </div>
+                )}
               </div>
-            ))}
-          </div>
+              
+              {/* Content */}
+              <CardContent className="p-6">
+                <h3 className="text-2xl font-black mb-3 group-hover:gradient-text transition-all duration-300">
+                  {project.title}
+                </h3>
+                
+                <p className="text-text-secondary mb-4 font-medium">
+                  {project.description}
+                </p>
+                
+                {/* Features */}
+                <ul className="space-y-2">
+                  {project.features.map((feature, idx) => (
+                    <li 
+                      key={idx}
+                      className="flex items-start gap-2 text-sm transition-all duration-200"
+                      style={{
+                        opacity: hoveredProject === project.id ? 1 : 0.7,
+                        transform: hoveredProject === project.id ? 'translateX(3px)' : 'translateX(0)'
+                      }}
+                    >
+                      <span className="text-neon-green font-black">→</span>
+                      <span>{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+                
+                {/* Hover indicator */}
+                {hoveredProject === project.id && (
+                  <div className="mt-4 text-sm font-black text-neon-purple">
+                    לחץ לפרטים נוספים ←
+                  </div>
+                )}
+              </CardContent>
+            </Card>
+          ))}
         </div>
       </div>
     </section>

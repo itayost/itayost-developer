@@ -317,12 +317,29 @@ const config: Config = {
       },
       
       // Typography
-      fontSize: {
-        'display': ['6rem', { lineHeight: '1', letterSpacing: '-0.03em', fontWeight: '900' }],
-        'headline': ['4rem', { lineHeight: '1.1', letterSpacing: '-0.02em', fontWeight: '900' }],
-        'title': ['3rem', { lineHeight: '1.2', letterSpacing: '-0.02em', fontWeight: '800' }],
-        'subtitle': ['2rem', { lineHeight: '1.3', letterSpacing: '-0.01em', fontWeight: '700' }],
-      },
+fontSize: {
+  // Responsive display sizes using clamp()
+  'display': ['clamp(3rem, 10vw, 6rem)', { 
+    lineHeight: '1', 
+    letterSpacing: '-0.03em', 
+    fontWeight: '900' 
+  }],
+  'headline': ['clamp(2rem, 8vw, 4rem)', { 
+    lineHeight: '1.1', 
+    letterSpacing: '-0.02em', 
+    fontWeight: '900' 
+  }],
+  'title': ['clamp(1.5rem, 6vw, 3rem)', { 
+    lineHeight: '1.2', 
+    letterSpacing: '-0.02em', 
+    fontWeight: '800' 
+  }],
+  'subtitle': ['clamp(1.25rem, 4vw, 2rem)', { 
+    lineHeight: '1.3', 
+    letterSpacing: '-0.01em', 
+    fontWeight: '700' 
+  }],
+},
       
       fontFamily: {
         sans: ['var(--font-inter)'],

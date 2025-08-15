@@ -23,9 +23,9 @@ export default function FeaturedProjectSection() {
           
           {/* Featured project card */}
           <Card variant="brutal" className="overflow-hidden shadow-brutal-xl">
-            <div className="grid lg:grid-cols-2">
+            <div className="grid grid-cols-1 lg:grid-cols-2">
               {/* Visual showcase */}
-              <div className="relative bg-gradient-to-br from-neon-purple via-neon-blue to-neon-pink p-8 lg:p-12">
+              <div className="relative bg-gradient-to-br from-neon-purple via-neon-blue to-neon-pink p-6 sm:p-8 lg:p-12">
                 {/* Project type badge */}
                 <div className="absolute top-8 right-8 z-10">
                   <span className="px-4 py-2 bg-neon-yellow text-black font-black border-4 border-black shadow-brutal">
@@ -45,7 +45,7 @@ export default function FeaturedProjectSection() {
                 </div>
                 
                 {/* Results badges */}
-                <div className="grid grid-cols-2 gap-4 mt-8">
+                <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-2 gap-3 sm:gap-4 mt-8">
                   {Object.entries(featuredProject.results).map(([key, value], idx) => (
                     <div 
                       key={key}
@@ -64,7 +64,7 @@ export default function FeaturedProjectSection() {
               </div>
               
               {/* Content */}
-              <div className="p-8 lg:p-12">
+              <div className="p-6 sm:p-8 lg:p-12">
                 <h2 className="text-display font-black mb-4">
                   {featuredProject.title}
                 </h2>
@@ -73,12 +73,12 @@ export default function FeaturedProjectSection() {
                 </p>
                 
                 {/* Tabs */}
-                <div className="flex gap-4 mb-8">
+                <div className="flex gap-2 sm:gap-4 mb-8 overflow-x-auto pb-2">
                   {['overview', 'features', 'tech'].map((tab) => (
                     <button
                       key={tab}
                       onClick={() => setActiveTab(tab)}
-                      className={`px-6 py-2 font-black border-4 border-black transition-all duration-300 ${
+                      className={`px-4 sm:px-6 py-2 font-bold sm:font-black border-3 sm:border-4 border-black transition-all duration-300 whitespace-nowrap ${
                         activeTab === tab 
                           ? 'bg-neon-yellow shadow-brutal-md -translate-y-1' 
                           : 'bg-white hover:shadow-brutal'
@@ -119,7 +119,7 @@ export default function FeaturedProjectSection() {
                   )}
                   
                   {activeTab === 'tech' && (
-                    <div className="flex flex-wrap gap-3">
+                    <div className="flex flex-wrap gap-2 sm:gap-3">
                       {featuredProject.technologies.map((tech, idx) => (
                         <span 
                           key={idx}
@@ -133,7 +133,7 @@ export default function FeaturedProjectSection() {
                 </div>
                 
                 {/* CTA */}
-                <div className="flex gap-4">
+                <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
                   <Link href="/contact">
                     <Button variant="brutal" size="lg" className="font-black">
                       רוצה פרויקט דומה? →

@@ -31,12 +31,9 @@ export default function HeroSection() {
           </div>
           
           {/* Clean headline without glitch effect */}
-          <h1 
-            className={`text-display md:text-7xl lg:text-display font-black mb-6 transition-all duration-700 ${
+            <h1 className={`text-4xl sm:text-5xl md:text-6xl lg:text-display font-black mb-6 transition-all duration-700 ${
               isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
-            }`}
-            style={{ animationDelay: '100ms' }}
-          >
+            }`}>
             <span className="block text-white text-shadow-brutal">
               נשבור את הכללים
             </span>
@@ -47,7 +44,7 @@ export default function HeroSection() {
           
           {/* Subtitle */}
           <p 
-            className={`text-2xl md:text-3xl text-white/90 leading-relaxed mb-12 max-w-3xl mx-auto font-medium transition-all duration-700 ${
+            className={`text-lg sm:text-xl md:text-2xl lg:text-3xl text-white/90 leading-relaxed mb-8 sm:mb-12 max-w-3xl mx-auto font-medium transition-all duration-700 ${
               isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
             }`}
             style={{ animationDelay: '200ms' }}
@@ -60,7 +57,7 @@ export default function HeroSection() {
           
           {/* Bold CTAs without pulse */}
           <div 
-            className={`flex flex-col sm:flex-row gap-6 justify-center mb-16 transition-all duration-700 ${
+            className={`flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center mb-12 sm:mb-16 transition-all duration-700 ${
               isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
             }`}
             style={{ animationDelay: '300ms' }}

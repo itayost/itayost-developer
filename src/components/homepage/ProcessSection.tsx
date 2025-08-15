@@ -51,14 +51,14 @@ export function ProcessSection() {
             {/* Connection line - brutal style */}
             <div className="hidden md:block absolute top-16 left-0 right-0 h-2 bg-black" />
             
-            <div className="grid md:grid-cols-4 gap-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8">
               {processSteps.map((step, index) => (
                 <div 
                   key={index}
                   className="relative text-center"
                 >
                   {/* Step card */}
-                  <div className="relative bg-white border-4 border-black shadow-brutal p-6 transform hover:shadow-brutal-lg hover:-translate-y-1 transition-all duration-300">
+                  <div className="relative bg-white border-4 border-black shadow-brutal p-4 sm:p-6 transform hover:shadow-brutal-lg hover:-translate-y-1 transition-all duration-300">
                     {/* Step number - positioned on the line */}
                     <div className="absolute -top-8 left-1/2 -translate-x-1/2 w-16 h-16 bg-black text-white flex items-center justify-center text-2xl font-black rounded-full border-4 border-white">
                       {index + 1}
